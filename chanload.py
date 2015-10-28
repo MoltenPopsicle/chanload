@@ -44,13 +44,13 @@ class imgdownload(object):
         fileno = 0 
         while fileno < len(imglist): #Uses a number increasing by 1 to count the current index entry in the list
             img_file = 'https://8ch.net' + imglist[fileno]
-            filename = ''.join(re.findall(r'\d+', str(imglist[fileno]))) #Uses file counter and sets filename as the original filename's number of current list entry
+            filename = ''.join(re.findall(r'\d+', str(imglist[fileno]))) #Uses file counter and sets filename as the original UNIX timestamp
 
             response = requests.get(img_file, stream=True)
        
             with open(filename, 'wb') as f:  
                 response.raw.decode_content = True 
-                shutil.copyfileobj(response.raw, f)  #Copies raw data gotten from requests into a filee
+                shutil.copyfileobj(response.raw, f)  #Copies raw data gotten using requests into a file
             print("Downloading image "+str(fileno + 1)+" of the thread")
             fileno += 1
        
