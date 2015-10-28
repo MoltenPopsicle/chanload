@@ -9,7 +9,7 @@ class imgdownload(object):
         return
     def imginsert(self):
         headers = { 'User-Agent' : 'Mozilla/5.0' } 
-        agent = urllib2.Request(thread_url, None, headers) #Sets the script's user agent header to Mozilla/5.0, as 8chan blcoks requests from python user agents
+        agent = urllib2.Request(thread_url, None, headers) #Sets the script's user agent header to Mozilla/5.0, as 8chan blocks requests from python user agents
         tfile = urllib2.urlopen(agent)
         tparse = re.findall(r'href="(/[a-z]+/src/+\d+\.(jpg|jpeg|png|webm|mp4|gif|pdf))"', str(tfile.read())) #regex to find images
 
@@ -17,7 +17,7 @@ class imgdownload(object):
         imglist = []
         for i in tparse:
             imglist.append(i[0])
-        imglist =  self.unique(imglist) #Removes duplicate file entries by invoking unique checker below
+        imglist =  self.unique(imglist) #Removes duplicate file entries by invoking uniqueness checker below
      
         print("Found "+str(len(imglist))+" in the thread")
 
